@@ -1,0 +1,9 @@
+<mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" [pageSizeOptions]="pageSizeOptions"
+  (page)="pageChanged($event)" showFirstLastButtons></mat-paginator>
+
+<!--
+  {{totalItems}}, {{itemsPerPage}}, {{pageSizeOptions | json}}
+  <span class="total" *ngIf="totalItems <= itemsPerPage">
+    <span class="total-label"> Total:</span> <strong>{{ totalItems }}</strong>
+  </span>
+-->

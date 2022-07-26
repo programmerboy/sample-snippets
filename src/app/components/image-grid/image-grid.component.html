@@ -1,0 +1,27 @@
+<div class="header d-flex justify-content-between align-items-center">
+    <strong>Image Grid</strong>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Image Width</mat-label>
+        <input matInput placeholder="Please enter image width" type="number" [formControl]="customwidthCtrl">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Column Gap</mat-label>
+        <input matInput placeholder="Please enter row gap" type="number"
+            [formControl]="columnGapCtrl">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Items Per Row</mat-label>
+        <input matInput placeholder="Please enter items per row" type="number"
+            [formControl]="itemsPerRowCtrl">
+    </mat-form-field>
+</div>
+
+<div class="grid-container"
+ [style.grid-template-columns]="itemsPerRowStyle"
+ [style.grid-column-gap]="columnGapStyle">
+    <img *ngFor="let image of images; let i=index" src="/assets/images/grid/{{image}}" alt="Image {{i+1}}"
+        class="grid-img" width="{{customwidth}}" />
+</div>

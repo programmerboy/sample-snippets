@@ -1,0 +1,28 @@
+#header {
+    display: flex;
+    justify-content: space-between;
+
+    #brand-logo {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    #menu {
+        display: flex;
+    }
+}
+
+.mat-menu-item {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+
+    i {
+        margin-right: 10px;
+    }
+}
+
+.content {
+    padding: 5px;
+}
