@@ -16,6 +16,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.navigation = [
       // new NavigationModel("/samples", "Samples", false),
       new NavigationModel("/imagegrid", "Image Grid"),
+      new NavigationModel("/reactiveform", "Reactive Form"),
     ];
   }
   ngAfterViewInit(): void {

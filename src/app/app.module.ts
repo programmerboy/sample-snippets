@@ -10,11 +10,16 @@ import { UrlSerializer } from '@angular/router';
 import { LowerCaseUrlSerializer } from './shared/lower-case-url-serializer';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormComponent } from './components/reactive-form/reactive-form.component';
+import { UtilityService } from './shared/services/utility.service';
+import { RestrictInputDirective } from './shared/directives/restrict-input.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ImageGridComponent
+    ImageGridComponent,
+    ReactiveFormComponent,
+    RestrictInputDirective
   ],
   imports: [
     CommonModule,
@@ -27,9 +32,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   providers: [
     // LocatorService,
+    UtilityService,
     { provide: UrlSerializer, useClass: LowerCaseUrlSerializer }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 
 export class AppModule {

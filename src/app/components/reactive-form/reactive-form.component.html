@@ -1,0 +1,97 @@
+<div class="container">
+    <h1>Reactive Form Example</h1>
+
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+
+        <div class="general-info">
+            <div class="mb-1">
+                <label for="first-name" class="form-label">First Name:</label>
+                <input id="first-name" type="text" formControlName="firstName" class="form-control"
+                    autocomplete="off" />
+                <mat-error *ngIf="error.firstName">{{error.firstName}}</mat-error>
+            </div>
+
+            <div class="mb-1">
+                <label for="last-name" class="form-label">Last Name:</label>
+                <input id="last-name" type="text" formControlName="lastName" class="form-control" autocomplete="off" />
+                <mat-error *ngIf="error.firstName">{{error.firstName}}</mat-error>
+            </div>
+
+            <div class="mb-1">
+                <label for="householdIncome" class="form-label">Household Income: </label>
+                <input id="householdIncome" type="text" formControlName="householdIncome"
+                    (focus)="setGenericElement($event, fields['householdIncome'])" (blur)="removeDollarSign()"
+                    (input)="applyCurrenyFormat($event)" [restrictInput]="allowedChars" class="form-control"
+                    autocomplete="off" />
+                <mat-error *ngIf="error.householdIncome">{{error.householdIncome}}</mat-error>
+            </div>
+
+            <div class="mb-1">
+                <label for="householdCost" class="form-label">Household Cost: </label>
+                <input id="householdCost" type="text" formControlName="householdCost"
+                    (focus)="setGenericElement($event, fields['householdCost'])" (blur)="removeDollarSign()"
+                    (input)="applyCurrenyFormat($event)" [restrictInput]="allowedChars" class="form-control"
+                    autocomplete="off" />
+                <mat-error *ngIf="error.householdCost">{{error.householdCost}}</mat-error>
+            </div>
+        </div>
+
+        <div formGroupName="address">
+            <h2>Address</h2>
+
+            <div class="address-info">
+                <div class="mb-1">
+                    <label for="street" class="form-label">street</label>
+                    <input id="street" type="text" formControlName="street" class="form-control" autocomplete="off" />
+                    <mat-error *ngIf="error.street">{{error.street}}</mat-error>
+                </div>
+
+                <div class="mb-1">
+                    <label for="city" class="form-label">city</label>
+                    <input id="city" type="text" formControlName="city" class="form-control" autocomplete="off" />
+                    <mat-error *ngIf="error.city">{{error.city}}</mat-error>
+                </div>
+
+                <div class="mb-1">
+                    <label for="state" class="form-label">state</label>
+                    <input id="state" type="text" formControlName="state" class="form-control" autocomplete="off" />
+                    <mat-error *ngIf="error.state">{{error.state}}</mat-error>
+                </div>
+
+                <div>
+                    <label for="zip" class="form-label">zip</label>
+                    <input id="zip" type="text" formControlName="zip" class="form-control" autocomplete="off" />
+                    <mat-error *ngIf="error.zip">{{error.zip}}</mat-error>
+                </div>
+            </div>
+        </div>
+
+        <hr />
+
+        <div formArrayName="aliases" class="mb-3">
+            <h2>Aliases</h2>
+
+            <div class="aliases-info">
+
+                <div *ngFor="let alias of aliases.controls; let i=index">
+                    <!-- The repeated alias template -->
+                    <label for="alias-{{ i }}" class="mx-1 form-label">Alias <span
+                            [hidden]="aliases.controls.length <= 1">{{i+1}}</span></label>
+                    <input id="alias-{{ i }}" type="text" [formControlName]="'aliases-'+i" class="form-control"
+                        autocomplete="off" />
+                </div>
+
+                <button type="button" (click)="addAlias()" class="btn btn-sm btn-primary">+ Add an Alias</button>
+            </div>
+        </div>
+
+        <button type="button" class="btn btn-sm btn-warning mx-1" (click)="resetForm()">Reset</button>
+        <button type="submit" [disabled]="!profileForm.valid" class="btn btn-sm btn-success">Submit</button>
+    </form>
+
+    <hr />
+
+    <pre>Form Value: {{ profileForm.value | json }}</pre>
+
+</div>
